@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>SLIDER</title>
+	<meta charset="utf-8">
+	<link rel="stylesheet" type="text/css" href="nouislider.css">
+	<script src="nouislider.js"></script>
+</head>
+<body>
+	<div id="slider"></div>
+	<ul class="nidurstada"></ul>
+
+	<script scr="app.js"></script>
+	<script>
+
+		let slider = document.getElementById('slider');
+
+		noUiSlider.create(slider, {
+		    start: [20, 80],
+		    connect: true,
+		    range: {
+		        'min': 0,
+		        'max': 100
+		    }
+		});
+
+		class Einstaklingur{
+			constructor(nafn, score){
+				this._nafn = nafn;
+				this._score = score;
+			}
+		}
+
+		let einstEitt = new Einstaklingur("Kalli", 50),
+			einstTvo = new Einstaklingur("Gunna", 90),
+			einstThrju = new Einstaklingur("Siggi", 60),
+			einstFjogur = new Einstaklingur("Lea", 70),
+			einstFimm = new Einstaklingur("Arnar", 95);
+
+		let einstaklingar = [einstEitt, einstTvo, einstThrju, einstFjogur, einstFimm];
+
+		let valueInput = document.getElementById('value-input'),
+			valueSpan = document.getElementById('value-span');
+
+		slider.noUiSlider.on('update', function(values, handle){
+			if(handle){
+				valueInput.value = values[handle];
+			} else{
+				valueSpan.innerHTML = values[handle];
+			}
+		});
+
+		valueInput.addEventListener('change', function(){
+			range.noUiSlider.set([null, this.value]);
+		})
+	</script>
+
+</body>
+</html>
